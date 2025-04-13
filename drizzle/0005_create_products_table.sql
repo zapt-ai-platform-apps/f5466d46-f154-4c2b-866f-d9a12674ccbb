@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS "products" (
+  "id" SERIAL PRIMARY KEY,
+  "name" TEXT NOT NULL,
+  "slug" TEXT UNIQUE NOT NULL,
+  "description" TEXT NOT NULL,
+  "short_description" TEXT,
+  "price" DECIMAL(10, 2) NOT NULL,
+  "mrp" DECIMAL(10, 2) NOT NULL,
+  "category_id" INTEGER NOT NULL REFERENCES "categories"("id"),
+  "brand_id" INTEGER NOT NULL REFERENCES "brands"("id"),
+  "stock_quantity" INTEGER NOT NULL DEFAULT 0,
+  "image_urls" TEXT[],
+  "weight" TEXT,
+  "sku" TEXT UNIQUE,
+  "nutrition_facts" TEXT,
+  "ingredients" TEXT,
+  "usage_instructions" TEXT,
+  "form" TEXT,
+  "is_featured" BOOLEAN DEFAULT FALSE,
+  "created_at" TIMESTAMP DEFAULT NOW(),
+  "updated_at" TIMESTAMP DEFAULT NOW()
+);
